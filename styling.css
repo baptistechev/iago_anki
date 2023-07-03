@@ -1,0 +1,29 @@
+.card {
+    font-family: arial;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+    background-color: white;
+   }
+
+.example_sentence{
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    color: gray;
+    background-color: white;  
+}
+.kana{
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;  
+}
+.defi{
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;  
+}
