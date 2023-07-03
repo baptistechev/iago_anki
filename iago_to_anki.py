@@ -10,6 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 import genanki
 
 N = int(input("How many words to get ? "))
+username = ""
+password = ""
 
 kanji_list = []
 kana_list = {}
@@ -34,11 +36,11 @@ elem = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,
 
 elem.click()
 elem = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//*[@id=\"identifierId\"]")))
-elem.send_keys("")
+elem.send_keys(username)
 elem.send_keys(Keys.RETURN)
 elem = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id=\"password\"]/div[1]/div/div[1]/input")))
 time.sleep(1)
-elem.send_keys("")
+elem.send_keys(password)
 elem.send_keys(Keys.RETURN)
 time.sleep(8)
 
