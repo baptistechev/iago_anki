@@ -69,6 +69,7 @@ while not find_last_word:
         #Check if not already in the list
         if kanji not in kanji_list:
             cpt+=1
+            print("{}".format(kanji))
             kanji_list.append(kanji)
             kana_list[kanji] = []
             def_list[kanji] = []
@@ -109,9 +110,6 @@ while not find_last_word:
             #Exit kanji page
             exi = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//*[@id=\"__next\"]/div/div[1]/div/div[1]/div/main/div[3]/div[1]/button")))
             exi.click()
-            
-            if len(kanji_list)>=N:
-                break
 
 driver.close()
 
