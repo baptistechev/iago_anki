@@ -63,7 +63,7 @@ while not find_last_word:
         
         #Check if not last_word
         if kanji == last_word:
-            find_last_word == True
+            find_last_word = True
             break
 
         #Check if not already in the list
