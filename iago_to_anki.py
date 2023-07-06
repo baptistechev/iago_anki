@@ -69,7 +69,6 @@ while not find_last_word:
         #Check if not already in the list
         if kanji not in kanji_list:
             cpt+=1
-            print("{}/{}".format(cpt))
             kanji_list.append(kanji)
             kana_list[kanji] = []
             def_list[kanji] = []
