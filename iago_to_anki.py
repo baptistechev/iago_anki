@@ -9,7 +9,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import genanki
 
-N = int(input("How many words to get ? "))
 username = ""
 password = ""
 
@@ -18,6 +17,10 @@ kana_list = {}
 def_list = {}
 example_list = {}
 src_list = {}
+
+#Last word
+f = open("save","r+")
+last_word = f.read()
 
 #Connection
 chrome_options = uc.ChromeOptions()
@@ -45,9 +48,9 @@ elem.send_keys(Keys.RETURN)
 time.sleep(8)
 
 cpt=0
-print("{}/{}".format(cpt,N))
+find_last_word = False
 #Main code: get all vocab
-while len(kanji_list)<N:
+while not find_last_word:
 
     word_list = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@id=\"__next\"]/div/div[1]/div/div[1]/div/main/div[1]/div/div/section/table/tbody")))
     words = WebDriverWait(word_list, 10).until(EC.presence_of_all_elements_located((By.XPATH, '*')))
@@ -58,10 +61,15 @@ while len(kanji_list)<N:
         kanji = WebDriverWait(kanji_div, 10).until(EC.presence_of_all_elements_located((By.XPATH, '*')))[0]
         kanji = kanji.get_attribute("title") #-----------Kanji
         
+        #Check if not last_word
+        if kanji == last_word:
+            find_last_word == True
+            break
+
         #Check if not already in the list
         if kanji not in kanji_list:
             cpt+=1
-            print("{}/{}".format(cpt,N))
+            print("{}/{}".format(cpt))
             kanji_list.append(kanji)
             kana_list[kanji] = []
             def_list[kanji] = []
@@ -108,8 +116,13 @@ while len(kanji_list)<N:
 
 driver.close()
 
-#Creating Anki deck
+#Update last word
+f.seek(0)
+f.write(kanji_list[0])
+f.truncate()
+f.close()
 
+#Creating Anki deck
 with open('styling.css', 'r') as file:
     styling = file.read()
 
